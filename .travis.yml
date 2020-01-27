@@ -2,12 +2,26 @@ os: linux
 dist: xenial
 language: cpp
 compiler: clang
+addons:
+  apt:
+    packages:
+      - doxygen
+      - graphviz
 script:
   - cmake .
   - cmake --build .
   - cmake --build . --target package
+  - doxygen Doxyfile
 deploy:
-  provider: script
-  skip_cleanup: true
-  script:
-  - curl -f -T print_ip-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb -uilia64:$BINTRAY_KEY "https://api.bintray.com/content/ilia64/otus-cpp/print_ip/$TRAVIS_BUILD_NUMBER/print_ip-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb;deb_distribution=xenial;deb_component=main;deb_architecture=amd64;publish=1"
+  - provider: script
+    skip_cleanup: true
+    script:
+    - curl -f -T print_ip-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb -uilia64:$BINTRAY_KEY "https://api.bintray.com/content/ilia64/otus-cpp/print_ip/$TRAVIS_BUILD_NUMBER/print_ip-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb;deb_distribution=xenial;deb_component=main;deb_architecture=amd64;publish=1"
+  - provider: pages
+    skip_cleanup: true
+    keep_history: true
+    local_dir: docs/html
+    github_token: $GITHUB_TOKEN
+    target_branch: docs
+    on:
+      branch: master
