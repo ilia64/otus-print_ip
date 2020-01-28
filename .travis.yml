@@ -8,6 +8,8 @@ addons:
       - doxygen
       - graphviz
 script:
+  - mkdir bin
+  - mkdir bin/docs
   - cmake .
   - cmake --build .
   - cmake --build . --target package
