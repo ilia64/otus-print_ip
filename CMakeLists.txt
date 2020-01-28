@@ -9,6 +9,8 @@ if (NOT DEFINED ENV{TRAVIS_BUILD_NUMBER})
     set(MY_BUILD_PATH ${CMAKE_CURRENT_SOURCE_DIR}/bin)
 endif ()
 
+message(">> Build path: ${MY_BUILD_PATH}")
+
 project(print_ip VERSION 0.0.$ENV{TRAVIS_BUILD_NUMBER} LANGUAGES CXX)
 
 add_executable(print_ip  src/main.cpp)
