@@ -8,8 +8,6 @@ addons:
       - doxygen
       - graphviz
 script:
-  - mkdir bin
-  - mkdir bin/docs
   - cmake .
   - cmake --build .
   - cmake --build . --target package
@@ -24,7 +22,7 @@ deploy:
   - provider: pages
     skip_cleanup: true
     keep_history: true
-    local_dir: bin/docs/html
+    local_dir: docs/html
     github_token: $GITHUB_TOKEN
     target_branch: gh-pages
     on:
