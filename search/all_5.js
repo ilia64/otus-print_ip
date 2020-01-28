@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['readme_2emd',['README.md',['../_r_e_a_d_m_e_8md.html',1,'']]]
+  ['set',['set',['../_c_make_lists_8txt.html#adc8e0953e44bf41166a6c8b5df81fee4',1,'set(MY_BUILD_PATH ${CMAKE_CURRENT_SOURCE_DIR}/bin) endif() message(&quot;&gt;&gt; Build path:&#160;CMakeLists.txt'],['../_c_make_lists_8txt.html#a14ea7e29d9bbe439d3ae7e657733231b',1,'set(CPACK_GENERATOR DEB) set(CPACK_PACKAGE_VERSION_MAJOR&quot;$:&#160;CMakeLists.txt'],['../_c_make_lists_8txt.html#abed8177b0359bb37e78aebe0412cc156',1,'set(CPACK_PACKAGE_VERSION_MINOR&quot;${PROJECT_VERSION_MINOR}&quot;) set(CPACK_PACKAGE_VERSION_PATCH&quot;$:&#160;CMakeLists.txt'],['../_c_make_lists_8txt.html#adb1dc740f64fb9c3e721acc955db25c7',1,'set(CPACK_PACKAGE_CONTACT ilia64mods @gmail.com) set(CPACK_DEBIAN_PACKAGE_SHLIBDEPS ON) include(CPack) option(BUILD_DOC&quot;Build documentation&quot;ON) find_package(Doxygen) if(DOXYGEN_FOUND) set(DOXYGEN_IN $:&#160;CMakeLists.txt'],['../_c_make_lists_8txt.html#a8cafc3e9a0b96df45f0ae20918f733a1',1,'set(DOXYGEN_OUT ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile) configure_file($:&#160;CMakeLists.txt']]]
 ];
