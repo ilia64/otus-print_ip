@@ -21,11 +21,11 @@ constexpr bool is_string_v = is_string<T>::value;
 template <typename Container>
 struct is_container : std::false_type {};
 
-template <typename... Ts>
-struct is_container<std::list<Ts...> > : std::true_type {};
+template <typename T>
+struct is_container<std::list<T>> : std::true_type {};
 
-template <typename... Ts>
-struct is_container<std::vector<Ts...> > : std::true_type {};
+template <typename T>
+struct is_container<std::vector<T>> : std::true_type {};
 
 template<typename T>
 constexpr bool is_container_v = is_container<T>::value;
