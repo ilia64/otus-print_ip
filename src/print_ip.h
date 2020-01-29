@@ -2,7 +2,9 @@
 #include "common.h"
 #include "type_traits.h"
 
-std::string to_string(const std::list<int>& ip)
+template<typename T>
+std::enable_if_t<is_container_v<T>, std::string>
+to_string(const std::list<int>& ip)
 {
     std::stringstream ss;
     for (auto iter = ip.begin();  iter != ip.end();)
