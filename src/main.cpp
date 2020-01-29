@@ -10,7 +10,7 @@ int main()
     print_ip(std::string{"185.110.56.0"});
     print_ip(std::vector<int>{81, 19, 64, 0});
     print_ip(std::list<int>{91, 220, 133, 0});
-   //print_ip(std::tuple<Octet, Octet, Octet, Octet>{185, 110, 56, 0});
+    print_ip(std::tuple<int, int, int, int>{185, 110, 56, 0});
 
     return 0;
 }
