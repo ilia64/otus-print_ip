@@ -3,8 +3,15 @@
 #include "type_traits.h"
 
 template<typename T>
+std::enable_if_t<is_string_v<T>, std::string>
+to_string(const T& ip)
+{
+    return ip;
+}
+
+template<typename T>
 std::enable_if_t<is_container_v<T>, std::string>
-to_string(const std::list<int>& ip)
+to_string(const T& ip)
 {
     std::stringstream ss;
     for (auto iter = ip.begin();  iter != ip.end();)
@@ -29,13 +36,6 @@ to_string(const T& ip)
         result.push_front(*(start + i));
     }
     return to_string(result);
-}
-
-template<typename T>
-std::enable_if_t<is_string_v<T>, std::string>
-to_string(const T& ip)
-{
-    return ip;
 }
 
 template<typename T>
