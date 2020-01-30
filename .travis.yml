@@ -2,11 +2,23 @@ os: linux
 dist: xenial
 language: cpp
 compiler: clang
-addons:
-  apt:
-    packages:
-      - doxygen
-      - graphviz
+matrix:
+  include:
+    - os: linux
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-8
+            - libboost-test-dev
+            - doxygen
+            - graphviz
+      env:
+        - MATRIX_EVAL="CC=gcc-8 && CXX=g++-8"
+before_install:
+  - eval "${MATRIX_EVAL}"
+  - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-8 60
 script:
   - cmake .
   - cmake --build .
