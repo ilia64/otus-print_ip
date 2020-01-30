@@ -29,28 +29,25 @@ to_string(const T& ip)
 
 ///     TUPLE
 
-/*
-
-template<int N, typename... Args>
-std::string get_tuple_item(const std::tuple<Args...>&ip)
+template<int N, typename ...Args>
+std::string tuple_to_string(const std::tuple<Args...>&ip)
 {
-    return "." + std::to_string(std::get<N - 1>(ip)) + get_tuple_item<N - 1, Args...>(ip);
+    if constexpr (N > 0)
+    {
+        return tuple_to_string<N - 1, Args...>(ip) + "." + std::to_string(std::get<N - 1>(ip));
+    }
+    else
+    {
+        return std::to_string(std::get<0>(ip));
+    }
 }
 
-template<typename... Args>
-std::string get_tuple_item<0, Args...>(const std::tuple<Args...>& ip)
+template <typename ...Args>
+std::enable_if_t<is_all_of_v<Args...>, std::string>
+to_string(const std::tuple<Args...> ip)
 {
-    return "0"; //std::to_string((size_t)std::get<0>(ip));
-}
-*/
-
-template<typename T>
-std::enable_if_t<is_tuple_v<T>, std::string>
-to_string(const T& ip)
-{
-    const auto len = std::tuple_size<T>::value;
-    //return tuple_to_str<len - 1, const T&>(ip);
-    return "tuple " + std::to_string(len);
+    const auto size = std::tuple_size_v<std::tuple<Args...>>;
+    return tuple_to_string<size, Args...>(ip);
 }
 
 ///     DIGIT

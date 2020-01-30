@@ -1,7 +1,24 @@
 #pragma ones
 #include <type_traits>
 
-//      is_string
+///     is_all_of
+
+template<typename T, typename... Args>
+struct is_all_of;
+
+template<typename T>
+struct is_all_of<T> : std::true_type {};
+
+template <typename T, typename U, typename... Args>
+struct is_all_of<T, U, Args...> : std::false_type {};
+
+template<typename T, typename... Args>
+struct is_all_of<T, T, Args...> : is_all_of<T, Args...> {};
+
+template<typename T, typename... Args>
+constexpr bool is_all_of_v = is_all_of<T>::value;
+
+///      is_string
 
 template <typename T>
 using string_type = std::basic_string<T, std::char_traits<T>, std::allocator<T>>;
@@ -31,6 +48,7 @@ constexpr bool is_container_v = is_container<T>::value;
 
 ///      is_tuple
 
+/*
 template<typename... Args>
 struct is_tuple : std::false_type {};
 
@@ -40,22 +58,8 @@ struct is_tuple<std::tuple<Args...>> : std::true_type {};
 template<typename... Args>
 constexpr bool is_tuple_v = is_tuple<Args...>::value;
 
-/*
+///      is_tuple_equal_args
 
-template<int N, typename T>
-struct tuple_to_str {
-    std::string  operator()(const T& tuple)
-    {
-        return tuple_to_str<N - 1, T>{}(tuple) +  "." + std::to_string(std::get<N>(tuple));
-    }
-};
-
-
-template<typename T>
-struct tuple_to_str<0, const T&>
-{
-    std::string  operator()(const T& tuple)
-    {
-        return std::to_string(std::get<0>(tuple));
-    }
-};*/
+template<typename... Args>
+constexpr bool is_tuple_equal_args_v = is_all_of_v<std::true_type {}, is_tuple<Args...>, is_all_of<Args...>>;
+*/
