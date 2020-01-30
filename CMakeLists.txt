@@ -15,6 +15,11 @@ project(print_ip VERSION 0.0.$ENV{TRAVIS_BUILD_NUMBER} LANGUAGES CXX)
 
 add_executable(print_ip  src/main.cpp)
 
+set_target_properties(print_ip PROPERTIES
+    CXX_STANDARD 17
+    CXX_STANDARD_REQUIRED ON
+    COMPILE_OPTIONS "-Wpedantic;-Wall;-Wextra")
+
 install(TARGETS print_ip RUNTIME DESTINATION ${MY_BUILD_PATH})
 
 set(CPACK_GENERATOR DEB)
