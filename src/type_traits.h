@@ -7,16 +7,15 @@ template <typename T>
 using string_type = std::basic_string<T, std::char_traits<T>, std::allocator<T>>;
 
 template <typename T>
-struct is_string : public std::false_type {};
+struct is_string : std::false_type {};
 
 template <typename T>
-struct is_string<string_type<T>> : public std::true_type {};
+struct is_string<string_type<T>> : std::true_type {};
 
 template<typename T>
 constexpr bool is_string_v = is_string<T>::value;
 
-//      is_container
-//      solution from: https://stackoverflow.com/questions/12042824/how-to-write-a-type-trait-is-container-or-is-vector
+///      is_container
 
 template <typename Container>
 struct is_container : std::false_type {};
@@ -30,17 +29,18 @@ struct is_container<std::vector<T>> : std::true_type {};
 template<typename T>
 constexpr bool is_container_v = is_container<T>::value;
 
-//      is_tuple
+///      is_tuple
 
 template<typename... Args>
-struct is_tuple : public std::false_type {};
+struct is_tuple : std::false_type {};
 
 template<typename... Args>
-struct is_tuple<std::tuple<Args...>> : public std::true_type {};
+struct is_tuple<std::tuple<Args...>> : std::true_type {};
 
 template<typename... Args>
 constexpr bool is_tuple_v = is_tuple<Args...>::value;
 
+/*
 
 template<int N, typename T>
 struct tuple_to_str {
@@ -58,4 +58,4 @@ struct tuple_to_str<0, const T&>
     {
         return std::to_string(std::get<0>(tuple));
     }
-};
+};*/

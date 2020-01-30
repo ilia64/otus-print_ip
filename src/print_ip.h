@@ -44,13 +44,13 @@ std::string get_tuple_item<0, Args...>(const std::tuple<Args...>& ip)
 }
 */
 
-
 template<typename T>
 std::enable_if_t<is_tuple_v<T>, std::string>
 to_string(const T& ip)
 {
     const auto len = std::tuple_size<T>::value;
-    return tuple_to_str<len - 1, const T&>(ip);
+    //return tuple_to_str<len - 1, const T&>(ip);
+    return "tuple " + std::to_string(len);
 }
 
 ///     DIGIT
