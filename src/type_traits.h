@@ -1,4 +1,4 @@
-#pragma ones
+#pragma once
 #include <type_traits>
 
 ///     is_all_of
@@ -16,7 +16,7 @@ template<typename T, typename... Args>
 struct is_all_of<T, T, Args...> : is_all_of<T, Args...> {};
 
 template<typename T, typename... Args>
-constexpr bool is_all_of_v = is_all_of<T>::value;
+constexpr bool is_all_of_v = is_all_of<T, Args...>::value;
 
 ///      is_string
 

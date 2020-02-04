@@ -1,4 +1,4 @@
-#pragma ones
+#pragma once
 #include "common.h"
 #include "type_traits.h"
 
@@ -32,7 +32,7 @@ to_string(const T& ip)
 template<int N, typename ...Args>
 std::string tuple_to_string(const std::tuple<Args...>&ip)
 {
-    if constexpr (N > 0)
+    if constexpr (N > 1)
     {
         return tuple_to_string<N - 1, Args...>(ip) + "." + std::to_string(std::get<N - 1>(ip));
     }
@@ -60,7 +60,7 @@ to_string(const T& ip)
     const auto* start = reinterpret_cast<const Octet *>(&ip);
 
     std::list<int> result;
-    for (int i = 0; i < size; ++i)
+    for (size_t i = 0; i < size; ++i)
     {
         result.push_front(*(start + i));
     }
