@@ -3,13 +3,9 @@ cmake_minimum_required(VERSION 3.12)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-set(MY_BUILD_PATH ${CMAKE_CURRENT_BINARY_DIR})
 if (NOT DEFINED ENV{TRAVIS_BUILD_NUMBER})
     set(ENV{TRAVIS_BUILD_NUMBER} 1)
-    set(MY_BUILD_PATH ${CMAKE_CURRENT_SOURCE_DIR}/bin)
 endif ()
-
-message(">> Build path: ${MY_BUILD_PATH}")
 
 project(print_ip VERSION 0.0.$ENV{TRAVIS_BUILD_NUMBER} LANGUAGES CXX)
 
@@ -19,6 +15,16 @@ set_target_properties(print_ip PROPERTIES
     CXX_STANDARD 17
     CXX_STANDARD_REQUIRED ON
     COMPILE_OPTIONS "-Wpedantic;-Wall;-Wextra")
+
+#проверяю если не Travis-ci то пусть CLine/Build/Install фигачит в bin
+#а не в cmake-build-debug
+set(MY_BUILD_PATH ${CMAKE_CURRENT_BINARY_DIR})
+if (NOT DEFINED ENV{CI})
+    set(MY_BUILD_PATH ${CMAKE_CURRENT_SOURCE_DIR}/bin)
+endif ()
+message(">> CMAKE_CURRENT_BINARY_DIR: ${CMAKE_CURRENT_BINARY_DIR}")
+message(">> CMAKE_CURRENT_SOURCE_DIR: ${CMAKE_CURRENT_SOURCE_DIR}")
+message(">> MY_BUILD_PATH: ${MY_BUILD_PATH}")
 
 install(TARGETS print_ip RUNTIME DESTINATION ${MY_BUILD_PATH})
 
