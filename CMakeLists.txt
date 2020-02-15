@@ -19,8 +19,13 @@ set_target_properties(print_ip PROPERTIES
 #проверяю если не Travis-ci то пусть CLine/Build/Install фигачит в bin
 #а не в cmake-build-debug
 set(MY_INSTALL_PATH bin)
+set(MY_DOCS_PATH ${CMAKE_CURRENT_BINARY_DIR})
 if (NOT DEFINED ENV{CI})
+
     set(MY_INSTALL_PATH ${CMAKE_CURRENT_SOURCE_DIR}/bin)
+    set(MY_DOCS_PATH ${CMAKE_CURRENT_SOURCE_DIR}/bin/docs)
+    file(MAKE_DIRECTORY ${MY_INSTALL_PATH})
+    file(MAKE_DIRECTORY ${MY_DOCS_PATH})
 endif ()
 
 install(TARGETS print_ip RUNTIME DESTINATION ${MY_INSTALL_PATH})
