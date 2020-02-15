@@ -9,7 +9,7 @@ endif ()
 
 project(print_ip VERSION 0.0.$ENV{TRAVIS_BUILD_NUMBER} LANGUAGES CXX)
 
-add_executable(print_ip  src/main.cpp)
+add_executable(print_ip src/main.cpp)
 
 set_target_properties(print_ip PROPERTIES
     CXX_STANDARD 17
@@ -17,7 +17,7 @@ set_target_properties(print_ip PROPERTIES
     COMPILE_OPTIONS "-Wpedantic;-Wall;-Wextra")
 
 set(MY_INSTALL_PATH bin)
-set(MY_DOCS_PATH ${CMAKE_CURRENT_BINARY_DIR})
+set(MY_DOCS_PATH ${CMAKE_CURRENT_BINARY_DIR}/docs)
 if (NOT DEFINED ENV{CI})
     set(MY_INSTALL_PATH ${CMAKE_CURRENT_SOURCE_DIR}/bin)
     set(MY_DOCS_PATH ${CMAKE_CURRENT_SOURCE_DIR}/bin/docs)
